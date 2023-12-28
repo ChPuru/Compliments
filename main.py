@@ -27,12 +27,12 @@ def generate_phrase(name):
     return phrase
 
 
-@app.route('')
+@app.route('/')
 def index():
     return render_template('index.html')
 
 
-@app.route('', methods=['POST'])
+@app.route('/', methods=['POST'])
 def process_form():
     name = request.form['name']
     phrase = generate_phrase(name)
