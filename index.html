@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compliment Generator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('WhatsApp Image 2023-12-28 at 22.25.02_77905e80.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        h1 {
+            color: #fff;
+        }
+
+        form {
+            max-width: 400px;
+            width: 80%;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.8);
+            /* White form background with transparency */
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
+            animation: fadeIn 1s ease;
+            /* Fade-in animation */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #ff69b4;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff3385;
+        }
+
+        p {
+            color: #333;
+            font-size: 18px;
+            margin-top: 20px;
+            padding: 20px;
+            word-wrap: break-word;
+            background-color: rgba(255, 255, 255, 0.9);
+            /* White compliment background with transparency */
+            border: 1px solid #eee;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            transform: translateY(0);
+        }
+
+        p.highlight {
+            background-color: #ffecf0;
+            transform: translateY(-10px);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Compliment Generator</h1>
+    <form>
+        <label for="name">What's your name?</label>
+        <input type="text" id="name" name="name" required>
+        <button type="button" onclick="generateCompliment()">Generate Compliment</button>
+    </form>
+
+    <script>
+        function generateCompliment() {
+            const adjectives = ['amazing', 'beautiful', 'charming', 'elegant', 'graceful', 'intelligent', 'kind', 'lovely', 'radiant', 'vibrant'];
+            const nouns = ['angel', 'butterfly', 'diamond', 'flower', 'goddess', 'princess', 'queen', 'sunshine', 'treasure', 'unicorn'];
+
+            const compliments = [
+                `You're an ${randomItem(adjectives)} ${randomItem(nouns)}!`,
+                `With your ${randomItem(adjectives)} spirit, you're a true ${randomItem(nouns)}.`,
+                `You possess the ${randomItem(adjectives)} grace of a ${randomItem(nouns)}.`,
+                `You're as ${randomItem(adjectives)} as a ${randomItem(nouns)}.`,
+                `In every way, you're a ${randomItem(adjectives)} ${randomItem(nouns)}.`
+            ];
+
+            const name = document.getElementById("name").value;
+            const randomCompliment = randomItem(compliments);
+
+            const complimentParagraph = document.createElement("p");
+            complimentParagraph.textContent = `Hey ${name}, ${randomCompliment}`;
+
+            // Remove existing compliment paragraph if any
+            const existingCompliment = document.querySelector("p");
+            if (existingCompliment) {
+                existingCompliment.remove();
+            }
+
+            // Append the new compliment paragraph
+            document.body.appendChild(complimentParagraph);
+
+            // Add a highlight class for a brief period
+            complimentParagraph.classList.add("highlight");
+
+            // Remove the highlight class after a short delay
+            setTimeout(() => {
+                complimentParagraph.classList.remove("highlight");
+            }, 2000);
+        }
+
+        function randomItem(array) {
+            return array[Math.floor(Math.random() * array.length)];
+        }
+    </script>
+</body>
+
+</html>
